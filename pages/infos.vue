@@ -60,7 +60,7 @@
         name: 'infos',
         data() {
             return {
-                infos: ''
+                infos: {}
             }
         },
         created(): void {
@@ -75,7 +75,7 @@
             async add() {
                 if (this.teamList.length < 6) {
                     await this.$store.dispatch('INCREMENT_TEAM', this.infos);
-                    alert(this.infos.name.toUpperCase() + ' has been add to your team.');
+                    alert('A pokemon has been added to your team.');
                 } else {
                     alert('Your team is already full');
                 }
