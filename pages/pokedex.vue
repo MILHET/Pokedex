@@ -48,6 +48,12 @@
                 this.$store.dispatch('INCREMENT');
             },
             handleClick(e: any) {
+                this.$router.push({
+                    name: 'infos',
+                    params: {
+                        infos: e
+                    }
+                })
             }
         }
     })
