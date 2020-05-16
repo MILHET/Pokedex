@@ -3,6 +3,7 @@ import axios from 'axios';
 export const state = () => ({
   counter: 0,
   pokedexList: [],
+  teamList: [],
   countShow: 20
 });
 
@@ -12,6 +13,13 @@ export const mutations = {
   },
   increment (state) {
     state.countShow = state.countShow + 20;
+  },
+  incrementTeam (state, elem) {
+    state.teamList.push(elem);
+  },
+  remove (state, elem) {
+    let removeIndex = state.teamList.map(function(item) { return item.id; }).indexOf(elem.id);
+    state.teamList.splice(removeIndex, 1);
   }
 };
 
@@ -28,5 +36,11 @@ export const actions = {
   },
   INCREMENT ({commit}) {
     commit('increment');
+  },
+  INCREMENT_TEAM ({commit}, elem) {
+    commit('incrementTeam', elem);
+  },
+  REMOVE ({commit}, elem) {
+    commit('remove', elem);
   }
 };

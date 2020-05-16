@@ -45,7 +45,9 @@
         </div>
 
       </div>
-      
+
+      <a class="btn btn-primary" @click="add">Add to my team</a>
+
     </div>
 
   </div>
@@ -64,6 +66,21 @@
         created(): void {
             this.infos = this.$route.params.infos;
         },
+        computed: {
+            teamList () {
+                return this.$store.state.teamList
+            }
+        },
+        methods: {
+            async add() {
+                if (this.teamList.length < 6) {
+                    await this.$store.dispatch('INCREMENT_TEAM', this.infos);
+                    alert(this.infos.name.toUpperCase() + ' has been add to your team.');
+                } else {
+                    alert('Your team is already full');
+                }
+            }
+        }
     })
 </script>
 

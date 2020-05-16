@@ -7,6 +7,23 @@
         <li>
           <nuxt-link class="nav__item" to="/">Home</nuxt-link>
           <nuxt-link class="nav__item" to="pokedex">Pokedex</nuxt-link>
+          <b-button class="nav__item__right" v-b-toggle.sidebar-1>My team</b-button>
+          <b-sidebar class="sidebar" id="sidebar-1" title="My Team" shadow>
+
+            <h2 v-if="teamList.length < 1" style="text-align: center"> It's time to make a team !</h2>
+
+            <ul>
+              <li v-for="element in teamList">
+                <img v-bind:src="element.sprites.front_default">
+                {{ element.name }}
+                <button type="button" class="btn btn-danger" @click="remove(element)">Remove</button>
+              </li>
+            </ul>
+
+            <div class="px-3 py-2">
+              <b-img src="../assets/img/team.png" fluid thumbnail></b-img>
+            </div>
+          </b-sidebar>
         </li>
       </ul>
 
@@ -19,10 +36,22 @@
   </header>
 </template>
 
-<script>
-    export default {
-        name: "TopHeader"
-    }
+<script lang="ts">
+    import Vue from 'vue'
+
+    export default Vue.extend({
+        name: "TopHeader",
+        computed: {
+            teamList () {
+                return this.$store.state.teamList
+            }
+        },
+        methods: {
+            remove(elem: any) {
+                this.$store.dispatch('REMOVE', elem);
+            }
+        }
+    })
 </script>
 
 <style scoped lang="scss">
