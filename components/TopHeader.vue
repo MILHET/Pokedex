@@ -6,6 +6,7 @@
       <ul class="nav">
         <li>
           <nuxt-link class="nav__item" to="/">Home</nuxt-link>
+          <nuxt-link class="nav__item" to="pokedex">Pokedex</nuxt-link>
         </li>
       </ul>
 
